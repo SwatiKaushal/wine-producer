@@ -1,0 +1,47 @@
+﻿@model BIM_wineProject.Models.Producer
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Producers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProducerID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProducerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BottleID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BottleID)
+        </dd>
+        
+        
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditProducer", new { id = Model.ProducerID }) |
+    @Html.ActionLink("Back to List", "Details")
+</p> 
