@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bottle">
+          <Key>
+            <PropertyRef Name="BottleID" />
+          </Key>
+          <Property Name="BottleID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Size" Type="int" />
+          <Property Name="styles" Type="varchar" MaxLength="255" />
+          <Property Name="taste" Type="varchar" MaxLength="255" />
+          <Property Name="_Description" Type="varchar" MaxLength="1000" />
+          <Property Name="Food_Pairing" Type="varchar" MaxLength="1000" />
+          <Property Name="_image" Type="varchar" MaxLength="255" />
+          <Property Name="link" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Producer">
+          <Key>
+            <PropertyRef Name="ProducerID" />
+          </Key>
+          <Property Name="ProducerID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="BottleID" Type="int" />
+        </EntityType>
+        <Association Name="FK__Producer__Bottle__567ED357">
+          <End Role="Bottle" Type="Self.Bottle" Multiplicity="0..1" />
+          <End Role="Producer" Type="Self.Producer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bottle">
+              <PropertyRef Name="BottleID" />
+            </Principal>
+            <Dependent Role="Producer">
+              <PropertyRef Name="BottleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="masterModelStoreContainer">
+          <EntitySet Name="Bottle" EntityType="Self.Bottle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producer" EntityType="Self.Producer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Producer__Bottle__567ED357" Association="Self.FK__Producer__Bottle__567ED357">
+            <End Role="Bottle" EntitySet="Bottle" />
+            <End Role="Producer" EntitySet="Producer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bottle">
+          <Key>
+            <PropertyRef Name="BottleID" />
+          </Key>
+          <Property Name="BottleID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Size" Type="Int32" />
+          <Property Name="styles" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="taste" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="C_Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Food_Pairing" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="C_image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="link" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Producers" Relationship="Self.FK__Producer__Bottle__567ED357" FromRole="Bottle" ToRole="Producer" />
+        </EntityType>
+        <EntityType Name="Producer">
+          <Key>
+            <PropertyRef Name="ProducerID" />
+          </Key>
+          <Property Name="ProducerID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BottleID" Type="Int32" />
+          <NavigationProperty Name="Bottle" Relationship="Self.FK__Producer__Bottle__567ED357" FromRole="Producer" ToRole="Bottle" />
+        </EntityType>
+        <Association Name="FK__Producer__Bottle__567ED357">
+          <End Role="Bottle" Type="Self.Bottle" Multiplicity="0..1" />
+          <End Role="Producer" Type="Self.Producer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bottle">
+              <PropertyRef Name="BottleID" />
+            </Principal>
+            <Dependent Role="Producer">
+              <PropertyRef Name="BottleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bottles" EntityType="Self.Bottle" />
+          <EntitySet Name="Producers" EntityType="Self.Producer" />
+          <AssociationSet Name="FK__Producer__Bottle__567ED357" Association="Self.FK__Producer__Bottle__567ED357">
+            <End Role="Bottle" EntitySet="Bottles" />
+            <End Role="Producer" EntitySet="Producers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+          <EntitySetMapping Name="Bottles">
+            <EntityTypeMapping TypeName="masterModel.Bottle">
+              <MappingFragment StoreEntitySet="Bottle">
+                <ScalarProperty Name="BottleID" ColumnName="BottleID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="styles" ColumnName="styles" />
+                <ScalarProperty Name="taste" ColumnName="taste" />
+                <ScalarProperty Name="C_Description" ColumnName="_Description" />
+                <ScalarProperty Name="Food_Pairing" ColumnName="Food_Pairing" />
+                <ScalarProperty Name="C_image" ColumnName="_image" />
+                <ScalarProperty Name="link" ColumnName="link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producers">
+            <EntityTypeMapping TypeName="masterModel.Producer">
+              <MappingFragment StoreEntitySet="Producer">
+                <ScalarProperty Name="ProducerID" ColumnName="ProducerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="BottleID" ColumnName="BottleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

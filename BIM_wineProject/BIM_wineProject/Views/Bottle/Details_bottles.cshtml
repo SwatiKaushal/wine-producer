@@ -1,0 +1,88 @@
+﻿@model BIM_wineProject.Models.Bottle
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Bottle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BottleID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BottleID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.styles)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.styles)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.taste)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.taste)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.C_Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.C_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Food_Pairing)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Food_Pairing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.C_image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.C_image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.link)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.link)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditBottle", new { id = Model.BottleID }) |
+    @Html.ActionLink("Back to List", "Details_bottles")
+</p> 

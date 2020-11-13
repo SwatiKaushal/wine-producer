@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bottle">
+    <Key>
+      <PropertyRef Name="BottleID" />
+    </Key>
+    <Property Name="BottleID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="Size" Type="Int32" />
+    <Property Name="styles" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="taste" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="C_Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Food_Pairing" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="C_image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="link" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Producers" Relationship="Self.FK__Producer__Bottle__567ED357" FromRole="Bottle" ToRole="Producer" />
+  </EntityType>
+  <EntityType Name="Producer">
+    <Key>
+      <PropertyRef Name="ProducerID" />
+    </Key>
+    <Property Name="ProducerID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BottleID" Type="Int32" />
+    <NavigationProperty Name="Bottle" Relationship="Self.FK__Producer__Bottle__567ED357" FromRole="Producer" ToRole="Bottle" />
+  </EntityType>
+  <Association Name="FK__Producer__Bottle__567ED357">
+    <End Role="Bottle" Type="Self.Bottle" Multiplicity="0..1" />
+    <End Role="Producer" Type="Self.Producer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bottle">
+        <PropertyRef Name="BottleID" />
+      </Principal>
+      <Dependent Role="Producer">
+        <PropertyRef Name="BottleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bottles" EntityType="Self.Bottle" />
+    <EntitySet Name="Producers" EntityType="Self.Producer" />
+    <AssociationSet Name="FK__Producer__Bottle__567ED357" Association="Self.FK__Producer__Bottle__567ED357">
+      <End Role="Bottle" EntitySet="Bottles" />
+      <End Role="Producer" EntitySet="Producers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

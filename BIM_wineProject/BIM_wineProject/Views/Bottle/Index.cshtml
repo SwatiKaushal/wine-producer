@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BIM_wineProject.Models.Bottle>
+
+@{
+    ViewBag.Title = "Bottles List";
+}
+
+<h3>Bottles List</h3>
+
+<p>
+    @Html.ActionLink("New Bottle", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>       
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.styles)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.taste)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.C_Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Food_Pairing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.C_image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.link)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "Details_bottles", new { BottleID = item.BottleID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.styles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.taste)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.C_Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Food_Pairing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.C_image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.link)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit_bottles", new { ProducerID = item.BottleID }) |
+                @Html.ActionLink("Delete", "Delete", new { ProducerID = item.BottleID })
+            </td>
+        </tr>
+    }
+
+</table>  
